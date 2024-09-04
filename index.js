@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 const socketio = require('socket.io');
 const bodyParser = require('body-parser');
 const http = require('http');
-
+require("dotenv").config();
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-mongoose.connect('mongodb://localhost:27017/', {
-    dbName: 'grnd'
+mongoose.connect(process.env.MONGO_URI, {
+    dbName: process.env.DB_NAME,
 });
 
 app.use(bodyParser.json());
